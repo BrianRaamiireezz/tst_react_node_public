@@ -15,7 +15,7 @@ export default function Login() {
   const ClicHandler = async () => {
 
     const host = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-    const url = `${ host }/api/user/login`;
+    const url = `http://localhost:8000/api/user/login`;
     const datos = {
       correo: correo,
       password: password

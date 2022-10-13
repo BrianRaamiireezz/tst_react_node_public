@@ -23,7 +23,7 @@ export default function Puestos() {
   const ClicHandler = async () => {
 
     const host = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-    const url = `${ host }/api/puesto`;
+    const url = `http://localhost:8000/api/puesto`;
     const autorizacion = `bearer ${ token }`;
 
     const datos = {

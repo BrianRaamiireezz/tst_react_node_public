@@ -19,7 +19,7 @@ export default function Alta({ puestos }) {
   const ClicHandler = async () => {
 
     const host = process.env.REACT_APP_API_URL || 'http://localhost:8000';
-    const url = `${ host }/api/empleado`;
+    const url = `http://localhost:8000/api/empleado`;
     const autorizacion = `bearer ${ token }`;
 
     const datos = {

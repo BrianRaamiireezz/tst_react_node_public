@@ -26,7 +26,7 @@ export default function Empleados() {
 
       try {
 
-        const result = await fetch(`${ host }/api/puesto`);
+        const result = await fetch(`http://localhost:8000/api/puesto`);
         const puestos = await result.json();
         setPuestos(puestos.data);
 
