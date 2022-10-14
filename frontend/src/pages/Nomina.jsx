@@ -116,10 +116,10 @@ export default function Nomina() {
             <div key = { `puesto-${ index }` }>
 
               <h4> { puesto.nombre } - { puesto.cantidad } Empleado(s) </h4>
-              <p>
+              <p style = { { textAlign: 'center' } }>
                 Percepciones : { (puesto.base + puesto.gratificacion + puesto.despensa) * puesto.cantidad }
               </p>
-              <p>
+              <p style = { { textAlign: 'center' } }>
                 Deducciones: { (puesto.seguro) * puesto.cantidad }
               </p>
             </div>

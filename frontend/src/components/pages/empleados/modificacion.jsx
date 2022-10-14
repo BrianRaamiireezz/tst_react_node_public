@@ -129,10 +129,13 @@ export default function Modificacion({ puestos, empleados, actualiza }) {
     boxShadow: 24,
     p: 4,
     textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5
   };
 
   return (
-    <div style = { { height: 400, width: '100%' } }>
+    <div style = { { height: 400, width: '100%', display: 'flex', flexDirection: 'column', gap: 15 } }>
 
       <DataGrid
         rows = { rows }
@@ -160,7 +163,11 @@ export default function Modificacion({ puestos, empleados, actualiza }) {
           <Typography id = "modal-modal-title" variant = "h6" component = "h2">
             Modificar
           </Typography>
-          <div id = "modal-modal-description" sx = { { mt: 2 } }>
+          <div
+            id = "modal-modal-description"
+            sx = { { mt: 2 } }
+            style = { { display: 'flex', flexDirection: 'column', gap: 15 } }
+          >
 
             <Stack
               spacing = { 2 }
@@ -209,19 +216,24 @@ export default function Modificacion({ puestos, empleados, actualiza }) {
               </TextField>
             </Stack>
 
-            <Button
-              variant = "contained"
-              onClick = { cancelHandler }
-            >
-              Cancelar
-            </Button>
+            <div style = { { display: 'flex', gap: 15, justifyContent: 'space-around' } }>
 
-            <Button
-              variant = "contained"
-              onClick = { modificarHandler }
-            >
-              Modificar
-            </Button>
+              <Button
+                variant = "contained"
+                onClick = { cancelHandler }
+              >
+                Cancelar
+              </Button>
+
+              <Button
+                variant = "contained"
+                onClick = { modificarHandler }
+              >
+                Modificar
+              </Button>
+
+            </div>
+
           </div>
         </Box>
       </Modal>

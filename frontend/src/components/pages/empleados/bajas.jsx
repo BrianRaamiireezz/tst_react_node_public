@@ -73,16 +73,26 @@ export default function Bajas({ puestos, empleados, actualiza }) {
   };
 
   return (
-    <div style = { { height: 400, width: '100%' } }>
+    <div
+      style = { {
+        width: '100%', height: 400, display: 'flex', flexDirection: 'column', gap: 15
 
-      <DataGrid
-        rows = { rows }
-        columns = { columns }
-        pageSize = { 5 }
-        rowsPerPageOptions = { [5] }
-        checkboxSelection
-        onSelectionModelChange = { (selection) => selectionHandler(selection) }
-      />
+      } }
+    >
+
+      <div style = { { display: 'flex', flexGrow: 1 } }>
+
+        <DataGrid
+          rows = { rows }
+          columns = { columns }
+          pageSize = { 5 }
+          rowsPerPageOptions = { [5] }
+          checkboxSelection
+          onSelectionModelChange = { (selection) => selectionHandler(selection) }
+        />
+
+      </div>
+
 
       <Button
         variant = "contained"

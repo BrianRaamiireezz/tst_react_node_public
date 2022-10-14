@@ -6,13 +6,12 @@ import './index.css';
 
 // Proveedores
 import { AuthProvider } from './utils/context';
-import { Container } from '@mui/material';
+import { Stack } from '@mui/material';
 import Home from './pages/Home';
 import Puestos from './pages/Puestos';
 import Empleados from './pages/Empleados';
 import Nomina from './pages/Nomina';
 import Reportes from './pages/Reportes';
-import { randomNumberBetween } from '@mui/x-data-grid/utils/utils';
 
 // Paginas
 
@@ -20,7 +19,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <Container>
+    <Stack
+      justifyContent = { 'center' }
+      alignItems = { 'center' }
+      spacing = { 5 }
+      paddingX = { 10 }
+      paddingY = { 5 }
+    >
       <Router>
         <AuthProvider>
 
@@ -60,6 +65,6 @@ root.render(
 
         </AuthProvider>
       </Router>
-    </Container>
+    </Stack>
   </React.StrictMode>
 );

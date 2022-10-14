@@ -51,6 +51,7 @@ export default function Login() {
         spacing = { 2 }
         alignItems = { 'center' }
         justifyContent = { 'center' }
+        height = { '100%' }
       >
         <h2> Login </h2>
 

@@ -14,7 +14,7 @@ export default function Cabecera() {
           <h1> Nomina </h1>
         </header>
 
-        <nav style = { { display: 'flex', gap: 15 } }>
+        <nav style = { { display: 'flex', gap: 30 } }>
           <Link to = "/">Home</Link>
           <Link to = "/puestos">Puestos</Link>
           <Link to = "/empleados">Empleados</Link>

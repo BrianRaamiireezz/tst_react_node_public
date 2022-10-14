@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../utils/context';
 import Error from './Error';
 
+import { Grid } from '@mui/material';
+
 export default function Reportes() {
 
   const [puestos, setPuestos] = useState({});
@@ -18,7 +20,7 @@ export default function Reportes() {
 
       try {
 
-        const result = await fetch(`http://localhost:8000/api/puesto`);
+        const result = await fetch('http://localhost:8000/api/puesto');
         const puestos = await result.json();
         setPuestos(puestos.data);
 
@@ -55,33 +57,84 @@ export default function Reportes() {
       }
     }
 
+    fetchPuestos();
     fetchSueldos();
     fetchEmpleados();
-    fetchPuestos();
 
   }, []);
+
+  const empleado_format = Object.values(empleados).map((empleado) => {
+
+    const sueldo_aux = Object.values(sueldos).filter(
+      (sueldo) => {
+        return (sueldo.id_puesto === empleado.id_puesto);
+      }
+    );
+
+    const puesto_aux = Object.values(puestos).filter(
+      (puesto) => {
+        return (puesto['id_puesto'] === empleado.id_puesto);
+      }
+    );
+
+    const puesto_format = puesto_aux[0];
+
+    const percepciones =
+      parseFloat(sueldo_aux[0].base) +
+      parseFloat(sueldo_aux[0].gratificacion) +
+      parseFloat(sueldo_aux[0].despensa);
+
+    const deducciones = parseFloat(sueldo_aux[0].seguro);
+
+    const sueldo_bruto = percepciones + deducciones;
+    const sueldo_neto = percepciones - deducciones;
+
+    const obj = {
+      nombre: empleado.nombre,
+      direccion: empleado.direccion,
+      correo: empleado.correo,
+      puesto: puesto_format.nombre,
+      sueldo_bruto: sueldo_bruto,
+      sueldo_neto: sueldo_neto
+    };
+
+    return obj;
+
+  });
+
+  // generatePDF(empleado_format);
 
   if (auth) {
     return (
       <>
         <Cabecera/>
-        <h2> Reportes </h2>
+        <h2> Reporte </h2>
         {
-          Object.values(empleados).map(
-            (empleado) => (<p>{ empleado.nombre }</p>)
+          Object.values(empleado_format).map(
+            (empleado) => (
+              <div style = { { display: 'flex', gap: 5 } }>
+                <p>
+                  { empleado.nombre }
+                </p>
+                <p>
+                  { empleado.direccion }
+                </p>
+                <p>
+                  { empleado.correo }
+                </p>
+                <p>
+                  { empleado.puesto }
+                </p>
+                <p>
+                  { empleado.sueldo_bruto }
+                </p>
+                <p>
+                  { empleado.sueldo_neto }
+                </p>
+              </div>
+            )
           )
         }
-        {
-          Object.values(puestos).map(
-            (puesto) => (<p>{ puesto.nombre }</p>)
-          )
-        }
-        {
-          Object.values(sueldos).map(
-            (sueldo) => (<p>{ sueldo.base }</p>)
-          )
-        }
-
       </>
     );
   }

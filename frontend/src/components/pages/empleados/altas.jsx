@@ -1,7 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../utils/context';
-import { Button, MenuItem, Stack, TextField } from '@mui/material';
+import { Alert, Button, Collapse, IconButton, MenuItem, Stack, TextField } from '@mui/material';
+import * as PropTypes from 'prop-types';
 
+function CloseIcon(props) {
+  return null;
+}
+
+CloseIcon.propTypes = { fontSize: PropTypes.string };
 export default function Alta({ puestos, actualiza }) {
 
   const [nombre, setNombre] = useState('');
@@ -50,10 +56,10 @@ export default function Alta({ puestos, actualiza }) {
       setCorreo('');
       setDireccion('');
 
+      // Agregar alert con mensaje
+
       actualiza();
 
-      // Agregar alert con mensaje
-      
     }
     else {
       console.log('Error');
@@ -67,59 +73,62 @@ export default function Alta({ puestos, actualiza }) {
   };
 
   return (
-
-    <Stack
-      spacing = { 2 }
-      alignItems = { 'center' }
-      justifyContent = { 'center' }
-    >
-
-      <TextField
-        required
-        label = "Nombre"
-        value = { nombre }
-        onChange = { (e) => setNombre(e.target.value) }
-      />
-
-      <TextField
-        required
-        label = "Direccion"
-        value = { direccion }
-        onChange = { (e) => setDireccion(e.target.value) }
-      />
-
-      <TextField
-        required
-        label = "Correo"
-        value = { correo }
-        onChange = { (e) => setCorreo(e.target.value) }
-      />
-
-      <TextField
-        required
-        select
-        label = "Puesto"
-        value = { puestoNombre }
-        onChange = { (e) => handleSelect(e) }
-        helperText = "Selecciona un puesto"
+    <>
+      <Stack
+        spacing = { 2 }
+        alignItems = { 'center' }
+        justifyContent = { 'center' }
       >
-        {
-          Object.values(puestos).map(
-            (puesto) => (
-              <MenuItem key = { puesto.id_puesto } value = { puesto.id_puesto }>
-                { puesto.nombre }
-              </MenuItem>
+
+        <TextField
+          required
+          label = "Nombre"
+          value = { nombre }
+          onChange = { (e) => setNombre(e.target.value) }
+        />
+
+        <TextField
+          required
+          label = "Direccion"
+          value = { direccion }
+          onChange = { (e) => setDireccion(e.target.value) }
+        />
+
+        <TextField
+          required
+          label = "Correo"
+          value = { correo }
+          onChange = { (e) => setCorreo(e.target.value) }
+        />
+
+        <TextField
+          required
+          select
+          label = "Puesto"
+          value = { puestoNombre }
+          onChange = { (e) => handleSelect(e) }
+          helperText = "Selecciona un puesto"
+        >
+          {
+            Object.values(puestos).map(
+              (puesto) => (
+                <MenuItem key = { puesto.id_puesto } value = { puesto.id_puesto }>
+                  { puesto.nombre }
+                </MenuItem>
+              )
             )
-          )
-        }
-      </TextField>
+          }
+        </TextField>
 
-      <Button
-        variant = "contained"
-        onClick = { ClicHandler }
-      >
-        Crear
-      </Button>
-    </Stack>
+        <Button
+          variant = "contained"
+          onClick = { ClicHandler }
+        >
+          Crear
+        </Button>
+
+      </Stack>
+
+    </>
   );
 }
