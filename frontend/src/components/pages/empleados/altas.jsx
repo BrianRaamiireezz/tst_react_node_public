@@ -17,7 +17,7 @@ export default function Alta({ puestos, actualiza }) {
   const [idUsuario] = IdUsuario;
 
   const ClicHandler = async () => {
-    
+
     const url = `http://localhost:8000/api/empleado`;
     const autorizacion = `bearer ${ token }`;
 
@@ -53,6 +53,7 @@ export default function Alta({ puestos, actualiza }) {
       actualiza();
 
       // Agregar alert con mensaje
+      
     }
     else {
       console.log('Error');
@@ -102,11 +103,15 @@ export default function Alta({ puestos, actualiza }) {
         onChange = { (e) => handleSelect(e) }
         helperText = "Selecciona un puesto"
       >
-        { Object.values(puestos).map((puesto) => (
-          <MenuItem key = { puesto.id_puesto } value = { puesto.id_puesto }>
-            { puesto.nombre }
-          </MenuItem>
-        )) }
+        {
+          Object.values(puestos).map(
+            (puesto) => (
+              <MenuItem key = { puesto.id_puesto } value = { puesto.id_puesto }>
+                { puesto.nombre }
+              </MenuItem>
+            )
+          )
+        }
       </TextField>
 
       <Button

@@ -7,6 +7,7 @@ import Error from '../pages/Error';
 import Cabecera from '../components/cabecera';
 import Alta from '../components/pages/empleados/altas';
 import Bajas from '../components/pages/empleados/bajas';
+import Modificacion from '../components/pages/empleados/modificacion';
 
 export default function Empleados() {
 
@@ -85,7 +86,7 @@ export default function Empleados() {
             <Bajas puestos = { puestos } empleados = { empleados } actualiza = { actualiza }/>
           </Route>
           <Route exact path = { `${ path }/modificaciones` }>
-            <h3> Modificar empleado </h3>
+            <Modificacion puestos = { puestos } empleados = { empleados } actualiza = { actualiza }/>
           </Route>
         </Switch>
       </>
