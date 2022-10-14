@@ -6,10 +6,13 @@ import { AuthContext } from '../utils/context';
 import Error from '../pages/Error';
 import Cabecera from '../components/cabecera';
 import Alta from '../components/pages/empleados/altas';
+import Bajas from '../components/pages/empleados/bajas';
 
 export default function Empleados() {
 
   const [puestos, setPuestos] = useState({});
+  const [empleados, setEmpleados] = useState({});
+  const [actualizado, setActualizado] = useState(0);
 
   const { Auth, Token, IdUsuario } = useContext(AuthContext);
   const [auth] = Auth;
@@ -18,11 +21,32 @@ export default function Empleados() {
 
   let { path } = useRouteMatch();
 
+  const actualiza = () => {
+    setActualizado(actualizado + 1);
+  };
+
+  useEffect(() => {
+    async function fetchEmpleados() {
+
+      try {
+
+        const result = await fetch(`http://localhost:8000/api/empleado`);
+        const empleados = await result.json();
+        setEmpleados(empleados.data);
+
+      } catch (e) {
+        console.log(e);
+      }
+
+    }
+
+    fetchEmpleados();
+
+  }, [actualizado]);
+
   useEffect(() => {
 
     async function fetchPuestos() {
-
-      let host = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
       try {
 
@@ -31,9 +55,7 @@ export default function Empleados() {
         setPuestos(puestos.data);
 
       } catch (e) {
-
         console.log(e);
-
       }
 
     }
@@ -57,10 +79,10 @@ export default function Empleados() {
 
         <Switch>
           <Route exact path = { `${ path }/altas` }>
-            <Alta puestos = { puestos }/>
+            <Alta puestos = { puestos } actualiza = { actualiza }/>
           </Route>
           <Route exact path = { `${ path }/bajas` }>
-            <h3> Eliminar empleado </h3>
+            <Bajas puestos = { puestos } empleados = { empleados } actualiza = { actualiza }/>
           </Route>
           <Route exact path = { `${ path }/modificaciones` }>
             <h3> Modificar empleado </h3>

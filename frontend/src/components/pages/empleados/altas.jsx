@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../utils/context';
 import { Button, MenuItem, Stack, TextField } from '@mui/material';
 
-export default function Alta({ puestos }) {
+export default function Alta({ puestos, actualiza }) {
 
   const [nombre, setNombre] = useState('');
   const [direccion, setDireccion] = useState('');
@@ -17,8 +17,7 @@ export default function Alta({ puestos }) {
   const [idUsuario] = IdUsuario;
 
   const ClicHandler = async () => {
-
-    const host = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+    
     const url = `http://localhost:8000/api/empleado`;
     const autorizacion = `bearer ${ token }`;
 
@@ -46,12 +45,12 @@ export default function Alta({ puestos }) {
     if (result.ok) {
       const response = await result.json();
 
-      console.log(response);
-
       // Reset campos
       setNombre('');
       setCorreo('');
       setDireccion('');
+
+      actualiza();
 
       // Agregar alert con mensaje
     }
@@ -103,7 +102,7 @@ export default function Alta({ puestos }) {
         onChange = { (e) => handleSelect(e) }
         helperText = "Selecciona un puesto"
       >
-        { puestos.map((puesto) => (
+        { Object.values(puestos).map((puesto) => (
           <MenuItem key = { puesto.id_puesto } value = { puesto.id_puesto }>
             { puesto.nombre }
           </MenuItem>
