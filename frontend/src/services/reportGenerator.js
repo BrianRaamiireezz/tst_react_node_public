@@ -2,7 +2,6 @@
 
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import autoTable from 'jspdf-autotable';
 
 // Date Fns is used to format the dates we receive
 // from our API call

@@ -3,8 +3,6 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../utils/context';
 import Error from './Error';
 
-import { Grid } from '@mui/material';
-
 export default function Reportes() {
 
   const [puestos, setPuestos] = useState({});
