@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -12,10 +12,12 @@ import Puestos from './pages/Puestos';
 import Empleados from './pages/Empleados';
 import Nomina from './pages/Nomina';
 import Reportes from './pages/Reportes';
+import { randomNumberBetween } from '@mui/x-data-grid/utils/utils';
 
 // Paginas
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <Container>

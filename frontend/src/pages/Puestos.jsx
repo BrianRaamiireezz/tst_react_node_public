@@ -2,7 +2,7 @@ import Cabecera from '../components/cabecera';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../utils/context';
 import { Button, FormControl, Input, InputAdornment, InputLabel, Stack, TextField } from '@mui/material';
-import Error from '../pages/Error';
+import Error from './Error';
 
 export default function Puestos() {
 
@@ -22,7 +22,6 @@ export default function Puestos() {
 
   const ClicHandler = async () => {
 
-    const host = process.env.REACT_APP_API_URL || 'http://localhost:8000';
     const url = `http://localhost:8000/api/puesto`;
     const autorizacion = `bearer ${ token }`;
 

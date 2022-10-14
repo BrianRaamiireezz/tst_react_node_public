@@ -3,7 +3,7 @@ import { Link, Switch, useRouteMatch, Route } from 'react-router-dom';
 
 import { AuthContext } from '../utils/context';
 
-import Error from '../pages/Error';
+import Error from './Error';
 import Cabecera from '../components/cabecera';
 import Alta from '../components/pages/empleados/altas';
 import Bajas from '../components/pages/empleados/bajas';
@@ -15,10 +15,8 @@ export default function Empleados() {
   const [empleados, setEmpleados] = useState({});
   const [actualizado, setActualizado] = useState(0);
 
-  const { Auth, Token, IdUsuario } = useContext(AuthContext);
+  const { Auth } = useContext(AuthContext);
   const [auth] = Auth;
-  const [token] = Token;
-  const [idUsuario] = IdUsuario;
 
   let { path } = useRouteMatch();
 
