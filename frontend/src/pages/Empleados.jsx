@@ -8,6 +8,7 @@ import Cabecera from '../components/cabecera';
 import Alta from '../components/pages/empleados/altas';
 import Bajas from '../components/pages/empleados/bajas';
 import Modificacion from '../components/pages/empleados/modificacion';
+import { Button, ButtonGroup } from '@mui/material';
 
 export default function Empleados() {
 
@@ -70,10 +71,20 @@ export default function Empleados() {
         <Cabecera/>
         <h2> Empleados </h2>
 
-        <nav style = { { display: 'flex', gap: 15 } }>
-          <Link to = { `${ path }/altas` }>Altas</Link>
-          <Link to = { `${ path }/bajas` }>Bajas</Link>
-          <Link to = { `${ path }/modificaciones` }>Modificaciones</Link>
+        <nav style = { { display: 'flex', gap: 30 } }>
+          <ButtonGroup variant = "outlined" aria-label = "outlined button group">
+            <Button>
+              <Link to = { `${ path }/altas` }>Altas</Link>
+            </Button>
+
+            <Button>
+              <Link to = { `${ path }/bajas` }>Bajas</Link>
+            </Button>
+
+            <Button>
+              <Link to = { `${ path }/modificaciones` }>Modificaciones</Link>
+            </Button>
+          </ButtonGroup>
         </nav>
 
         <Switch>

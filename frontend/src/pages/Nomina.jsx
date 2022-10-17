@@ -2,6 +2,7 @@ import Cabecera from '../components/cabecera';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../utils/context';
 import Error from './Error';
+import { Grid } from '@mui/material';
 
 export default function Nomina() {
 
@@ -84,15 +85,15 @@ export default function Nomina() {
 
     // Formatear sueldo
     const sueldo_formated = {
-      base: parseFloat(sueldo_aux[0].base),
-      gratificacion: parseFloat(sueldo_aux[0].gratificacion),
-      despensa: parseFloat(sueldo_aux[0].despensa),
-      seguro: parseFloat(sueldo_aux[0].seguro)
+      base: parseFloat(sueldo_aux[0]?.base ?? 0),
+      gratificacion: parseFloat(sueldo_aux[0]?.gratificacion ?? 0),
+      despensa: parseFloat(sueldo_aux[0]?.despensa ?? 0),
+      seguro: parseFloat(sueldo_aux[0]?.seguro ?? 0)
     };
 
     const obj = {
       [puesto.id_puesto]: {
-        nombre: puesto.nombre,
+        nombre: puesto?.nombre ?? '',
         cantidad: cantidad,
         base: sueldo_formated.base,
         gratificacion: sueldo_formated.gratificacion,
@@ -111,20 +112,22 @@ export default function Nomina() {
         <Cabecera/>
         <h2> Nomina </h2>
         <h3> Puestos </h3>
-        {
-          Object.values(puestos_formated).map((puesto, index) => (
-            <div key = { `puesto-${ index }` }>
+        <Grid container spacing={2}>
+          {
+            Object.values(puestos_formated).map((puesto, index) => (
+              <Grid item xs={4} key = { `puesto-${ index }` }>
 
-              <h4> { puesto.nombre } - { puesto.cantidad } Empleado(s) </h4>
-              <p style = { { textAlign: 'center' } }>
-                Percepciones : { (puesto.base + puesto.gratificacion + puesto.despensa) * puesto.cantidad }
-              </p>
-              <p style = { { textAlign: 'center' } }>
-                Deducciones: { (puesto.seguro) * puesto.cantidad }
-              </p>
-            </div>
-          ))
-        }
+                <h4> { puesto.nombre } - { puesto.cantidad } Empleado(s) </h4>
+                <p style = { { textAlign: 'center' } }>
+                  Percepciones : { (puesto.base + puesto.gratificacion + puesto.despensa) * puesto.cantidad }
+                </p>
+                <p style = { { textAlign: 'center' } }>
+                  Deducciones: { (puesto.seguro) * puesto.cantidad }
+                </p>
+              </Grid>
+            ))
+          }
+        </Grid>
         <h3> Totales </h3>
         <p>
           Percepciones : {

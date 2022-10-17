@@ -8,6 +8,7 @@ global.db = require('./db');
 const puestoRoutes = require('./routes/puesto');
 const userRouters = require('./routes/user');
 const empleadoRoutes = require('./routes/empleado');
+const sueldoRoutes = require('./routes/sueldo');
 
 // Init
 const app = express();
@@ -27,5 +28,6 @@ app.use((req, res, next) => {
 app.use('/api/puesto', puestoRoutes);
 app.use('/api/user', userRouters);
 app.use('/api/empleado', empleadoRoutes);
+app.use('/api/sueldo', sueldoRoutes);
 
 module.exports = app;

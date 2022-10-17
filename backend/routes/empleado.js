@@ -7,6 +7,9 @@ const router = express.Router();
 // Agregar ", auth"
 
 router.post('/', auth, empleadoController.create);
+
+router.get('/', empleadoController.findAll);
+
 router.put('/:id', auth, empleadoController.updateOne);
 router.delete('/:id', auth, empleadoController.deleteOne);
 

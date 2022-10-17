@@ -78,20 +78,20 @@ export default function Reportes() {
     const puesto_format = puesto_aux[0];
 
     const percepciones =
-      parseFloat(sueldo_aux[0].base) +
-      parseFloat(sueldo_aux[0].gratificacion) +
-      parseFloat(sueldo_aux[0].despensa);
+      parseFloat(sueldo_aux[0]?.base ?? 0) +
+      parseFloat(sueldo_aux[0]?.gratificacion ?? 0) +
+      parseFloat(sueldo_aux[0]?.despensa ?? 0);
 
-    const deducciones = parseFloat(sueldo_aux[0].seguro);
+    const deducciones = parseFloat(sueldo_aux[0]?.seguro ?? 0);
 
     const sueldo_bruto = percepciones + deducciones;
     const sueldo_neto = percepciones - deducciones;
 
     const obj = {
-      nombre: empleado.nombre,
-      direccion: empleado.direccion,
-      correo: empleado.correo,
-      puesto: puesto_format.nombre,
+      nombre: empleado?.nombre ?? '',
+      direccion: empleado?.direccion ?? '',
+      correo: empleado?.correo ?? '',
+      puesto: puesto_format?.nombre ?? '',
       sueldo_bruto: sueldo_bruto,
       sueldo_neto: sueldo_neto
     };
