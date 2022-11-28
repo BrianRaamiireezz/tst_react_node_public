@@ -2,10 +2,10 @@ exports.create = (req, res) => {
 
   let sql = `INSERT INTO EMPLEADO (nombre, direccion, correo, id_puesto) VALUES(?)`;
   let valores = [
-    req.body.empleado.nombre,
-    req.body.empleado.direccion,
-    req.body.empleado.correo,
-    req.body.puesto.id_puesto
+    req.body.data.nombre,
+    req.body.data.direccion,
+    req.body.data.correo,
+    req.body.data.id_puesto
   ];
 
   db.query(sql, [valores], function (error) {
@@ -23,10 +23,10 @@ exports.updateOne = (req, res) => {
 
   let sql = `UPDATE EMPLEADO SET nombre=?, direccion=?, correo=?, id_puesto=? WHERE id_empleado=?`;
   let valores = [
-    req.body.empleado.nombre,
-    req.body.empleado.direccion,
-    req.body.empleado.correo,
-    req.body.puesto.id_puesto,
+    req.body.data.nombre,
+    req.body.data.direccion,
+    req.body.data.correo,
+    req.body.data.id_puesto,
     req.params.id
   ];
 
@@ -65,8 +65,8 @@ exports.findAll = (req, res) => {
       res.status(400).json({ error: error });
     }
     else {
-      res.status(200).json({ data });
+      res.status(200).json([...data]);
     }
   });
 
-}
+};
