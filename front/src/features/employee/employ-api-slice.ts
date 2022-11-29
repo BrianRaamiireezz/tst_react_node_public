@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { coreApiSlice } from '../api/core-api-slice';
 
 interface Empleado {
 
@@ -22,29 +22,25 @@ interface Response {
   [id: string]: string;
 }
 
-export const employApiSlice = createApi(
+const segment = '/empleado';
+
+export const employApiSlice = coreApiSlice.injectEndpoints(
   {
-    reducerPath: 'employApi',
-    baseQuery: fetchBaseQuery(
-      {
-        baseUrl: 'http://127.0.0.1:8000/api/empleado',
-      }
-    ),
     endpoints(builder) {
       return {
 
         getEmpleados: builder.query<Empleado[], void>(
           {
             query() {
-              return '/';
+              return `${ segment }/`;
             }
           }
         ),
-        addEmpleado: builder.query<Response, { empleado: EmpleadoImp, auth: string }>(
+        addEmpleado: builder.mutation<Response, { empleado: EmpleadoImp, auth: string }>(
           {
             query(args) {
               return {
-                url: '/',
+                url: `${ segment }/`,
                 method: 'POST',
                 body: {
                   data: args.empleado,
@@ -54,11 +50,11 @@ export const employApiSlice = createApi(
             }
           }
         ),
-        updateEmpleado: builder.query<Response, { empleado: EmpleadoImp, auth: string, id: string }>(
+        updateEmpleado: builder.mutation<Response, { empleado: EmpleadoImp, auth: string, id: string }>(
           {
             query(args) {
               return {
-                url: `/${ args.id }`,
+                url: `${ segment }/${ args.id }`,
                 method: 'PUT',
                 body: {
                   data: args.empleado,
@@ -68,11 +64,11 @@ export const employApiSlice = createApi(
             }
           }
         ),
-        deleteEmpleado: builder.query<Response, { auth: string, id: string }>(
+        deleteEmpleado: builder.mutation<Response, { auth: string, id: string }>(
           {
             query(args) {
               return {
-                url: `/${ args.id }`,
+                url: `${ segment }/${ args.id }`,
                 method: 'DELETE',
                 body: {
                   correo: args.auth
@@ -89,7 +85,7 @@ export const employApiSlice = createApi(
 
 export const {
   useGetEmpleadosQuery,
-  useAddEmpleadoQuery,
-  useUpdateEmpleadoQuery,
-  useDeleteEmpleadoQuery
+  useAddEmpleadoMutation,
+  useUpdateEmpleadoMutation,
+  useDeleteEmpleadoMutation
 } = employApiSlice;

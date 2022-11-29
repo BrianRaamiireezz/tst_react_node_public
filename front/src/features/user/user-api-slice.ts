@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { coreApiSlice } from '../api/core-api-slice';
 
 interface Session {
   'correo': string,
@@ -10,19 +10,15 @@ interface User {
   'password': string,
 }
 
-export const userApiSlice = createApi(
+export const userApiSlice = coreApiSlice.injectEndpoints(
   {
-    reducerPath: 'userApi',
-    baseQuery: fetchBaseQuery({
-      baseUrl: 'http://127.0.0.1:8000/api/user',
-    }),
     endpoints(builder) {
       return {
 
-        login: builder.query<Session, User>({
+        login: builder.mutation<Session, User>({
           query(user: User) {
             return {
-              url: '/login',
+              url: '/user/login',
               method: 'POST',
               body: user
             };
@@ -31,9 +27,10 @@ export const userApiSlice = createApi(
 
       };
     },
-  },
+    overrideExisting: false,
+  }
 );
 
 export const {
-  useLoginQuery
+  useLoginMutation
 } = userApiSlice;
