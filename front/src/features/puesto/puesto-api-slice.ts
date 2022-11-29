@@ -49,3 +49,8 @@ export const puestoApiSlice = coreApiSlice.injectEndpoints(
     }
   }
 );
+
+export const {
+  useAddPuestoMutation,
+  useGetPuestosQuery
+} = puestoApiSlice;

@@ -7,7 +7,7 @@ exports.findAll = (req, res) => {
       res.status(400).json({ error: error });
     }
     else {
-      res.status(200).json({ data });
+      res.status(200).json([...data]);
     }
   });
 
