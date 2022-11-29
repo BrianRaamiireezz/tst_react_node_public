@@ -10,12 +10,18 @@ interface Empleado {
 
 }
 
-// Empleado implicito - sin id
+/* Empleado implicito - sin id
+*  @interface EmpleadoImp
+* */
 interface EmpleadoImp {
-  'nombre': string,
-  'direccion': string,
-  'correo': string,
-  'id_puesto': number,
+  // Nombre del empleado
+  nombre: string;
+  // Direccion del empleado
+  direccion: string;
+  // Correo del empleado
+  correo: string;
+  // Id del puesto - Mayor que 0
+  id_puesto: number;
 }
 
 interface Response {
