@@ -2,8 +2,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+// Redux
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+
+// Router
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Components
 import App from './App';

@@ -39,7 +39,8 @@ export const employApiSlice = coreApiSlice.injectEndpoints(
           {
             query() {
               return `${ segment }/`;
-            }
+            },
+            providesTags: ['Employee'],
           }
         ),
         addEmpleado: builder.mutation<Response, { empleado: EmpleadoImp, auth: string }>(
@@ -53,7 +54,8 @@ export const employApiSlice = coreApiSlice.injectEndpoints(
                   correo: args.auth
                 }
               };
-            }
+            },
+            invalidatesTags: ['Employee'],
           }
         ),
         updateEmpleado: builder.mutation<Response, { empleado: EmpleadoImp, auth: string, id: string }>(
@@ -67,7 +69,8 @@ export const employApiSlice = coreApiSlice.injectEndpoints(
                   correo: args.auth
                 }
               };
-            }
+            },
+            invalidatesTags: ['Employee'],
           }
         ),
         deleteEmpleado: builder.mutation<Response, { auth: string, id: string }>(
@@ -80,7 +83,8 @@ export const employApiSlice = coreApiSlice.injectEndpoints(
                   correo: args.auth
                 }
               };
-            }
+            },
+            invalidatesTags: ['Employee'],
           }
         )
 

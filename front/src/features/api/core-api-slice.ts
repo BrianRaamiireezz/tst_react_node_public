@@ -13,6 +13,7 @@ export const coreApiSlice = createApi(
         }
       }
     ),
+    tagTypes: ['Employee', 'Puesto', 'Sueldo'],
     endpoints: () => ({}),
   }
 );

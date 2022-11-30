@@ -16,7 +16,8 @@ export const sueldoApiSlice = coreApiSlice.injectEndpoints(
           {
             query() {
               return `/sueldo/`;
-            }
+            },
+            providesTags: ['Sueldo'],
           }
         ),
       };

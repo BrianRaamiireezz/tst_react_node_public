@@ -31,7 +31,8 @@ export const puestoApiSlice = coreApiSlice.injectEndpoints(
           {
             query() {
               return `${ segment }/`;
-            }
+            },
+            providesTags: ['Puesto'],
           }
         ),
         addPuesto: builder.mutation<Response, { puesto: PuestoImpl, sueldo: Sueldo }>(
@@ -42,7 +43,8 @@ export const puestoApiSlice = coreApiSlice.injectEndpoints(
                 method: `POST`,
                 body: args
               };
-            }
+            },
+            invalidatesTags: ['Puesto', 'Sueldo'],
           }
         ),
       };
