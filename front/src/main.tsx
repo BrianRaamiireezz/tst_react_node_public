@@ -10,24 +10,49 @@ import { store } from './app/store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Components
-import App from './App';
+
 
 // Styles
 import './index.css';
+import Protected from './features/user/Protected';
+import Root from './routes/Root';
+import Login from './features/user/Login';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+// Routes definition
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Root/>,
+      children: [
+        {
+          errorElement: <> <h1>Error</h1></>,
+          children: [
+            {
+              index: true,
+              element: <><h2>Main</h2></>
+            },
+            {
+              path: 'login',
+              element: <Login/>,
+            }
+          ],
+        }
+      ]
+    }
+  ]
+);
+
+ReactDOM.createRoot( document.getElementById( 'root' ) as HTMLElement ).render(
   <React.StrictMode>
     <>
       <Provider store = { store }>
-        <App/>
+        <RouterProvider router = { router }/>
       </Provider>
     </>
   </React.StrictMode>
 );
 
-/* TODO: i - slice empleado
-*        i - slice puesto
-*        i - slice sueldo
-*        i - slice auth
-*        i - routes
-*/
+/* TODO: i - routes
+*
+* */

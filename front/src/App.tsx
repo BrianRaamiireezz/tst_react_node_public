@@ -1,4 +1,3 @@
-/*
 import { useLoginMutation } from './features/user/user-api-slice';
 
 import {
@@ -8,7 +7,7 @@ import {
 } from './features/employee/employ-api-slice';
 
 import { useAppSelector } from './app/hooks';
-*/
+
 
 function App() {
   return (
@@ -18,10 +17,10 @@ function App() {
   );
 }
 
-/*
+
 function OldApp() {
   const session = useAppSelector((state) => state.auth);
-  const [updateEmploy, {isLoading}] = useUpdateEmpleadoMutation();
+  const [updateEmploy, { isLoading }] = useUpdateEmpleadoMutation();
 
   interface upType {
     'empleado': {
@@ -50,11 +49,6 @@ function OldApp() {
     isFetching: isFetchingEmploy
   } = useGetEmpleadosQuery();
 
-  const {data, isFetching} = useLoginQuery({
-    correo: 'admin@admin',
-    password: 'mysql'
-  });
-
   async function actualiza(params: upType) {
     try {
       const result = await updateEmploy(params).unwrap();
@@ -70,16 +64,6 @@ function OldApp() {
 
   return (
     <>
-
-      <h2>
-        {
-          isFetching
-            ? 'cargando'
-            : JSON.stringify(data)
-        }
-      </h2>
-
-      <br/>
 
       <h2>
         {
@@ -115,6 +99,6 @@ function OldApp() {
     </>
   );
 }
-*/
+
 
 export default App;
