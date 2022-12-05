@@ -16,7 +16,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import Protected from './features/user/Protected';
 import Root from './routes/Root';
-import Login from './features/user/Login';
+import HomePage from './routes/HomePage';
+import Dashboard from './features/user/Dashboard';
 
 // Routes definition
 const router = createBrowserRouter(
@@ -30,11 +31,38 @@ const router = createBrowserRouter(
           children: [
             {
               index: true,
-              element: <><h2>Main</h2></>
+              element: <HomePage/>,
             },
             {
-              path: 'login',
-              element: <Login/>,
+              path: 'dashboard',
+              element: <Protected element = { <Dashboard/> }/>,
+              children: [
+                {
+                  errorElement: <> <h2>Error</h2> </>,
+                  children: [
+                    {
+                      index: true,
+                      element: <> <h2> Bienvenido a tu dashboard </h2> </>
+                    },
+                    {
+                      path: 'puestos',
+                      element: <> <h2> Seccion puestos </h2> </>
+                    },
+                    {
+                      path: 'empleados',
+                      element: <> <h2> Seccion empleados </h2> </>
+                    },
+                    {
+                      path: 'nomina',
+                      element: <> <h2> Seccion nomina </h2> </>
+                    },
+                    {
+                      path: 'reportes',
+                      element: <> <h2> Seccion reportes </h2> </>
+                    },
+                  ]
+                }
+              ]
             }
           ],
         }
@@ -53,6 +81,4 @@ ReactDOM.createRoot( document.getElementById( 'root' ) as HTMLElement ).render(
   </React.StrictMode>
 );
 
-/* TODO: i - routes
-*
-* */
+/* TODO: i - routes */

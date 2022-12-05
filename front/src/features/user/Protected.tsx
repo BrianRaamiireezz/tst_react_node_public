@@ -13,7 +13,7 @@ function Protected({ element }: { element: JSX.Element }) {
     content = element;
   }
   else {
-    content = <Navigate to = { '/login' }/>;
+    content = <Navigate to = { '/' }/>;
   }
 
   return ( content );

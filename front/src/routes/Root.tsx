@@ -1,21 +1,16 @@
 import { Outlet } from 'react-router-dom';
+import { CssBaseline } from '@mui/material';
 
 function Root() {
   return (
     <>
-      <h1>
-        Page header
-      </h1>
-      <div>
+      <CssBaseline/>
+      <main>
         <Outlet/>
-      </div>
+      </main>
     </>
   );
 }
 
-/* TODO:  i - navigation
-*         i - outlet
-* */
-
-
+/* TODO:  i - navigation */
 export default Root;
