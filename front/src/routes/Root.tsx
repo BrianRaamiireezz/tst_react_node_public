@@ -12,5 +12,4 @@ function Root() {
   );
 }
 
-/* TODO:  i - navigation */
 export default Root;

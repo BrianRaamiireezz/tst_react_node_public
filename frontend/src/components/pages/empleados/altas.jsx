@@ -1,6 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../utils/context';
-import { Alert, Button, Collapse, IconButton, MenuItem, Stack, TextField } from '@mui/material';
+import {
+  Alert,
+  Button,
+  Collapse,
+  IconButton,
+  MenuItem,
+  Stack,
+  TextField
+} from '@mui/material';
 import * as PropTypes from 'prop-types';
 
 function CloseIcon(props) {
@@ -104,7 +112,7 @@ export default function Alta({ puestos, actualiza }) {
         <TextField
           required
           select
-          label = "Puesto"
+          label = "Puestos"
           value = { puestoNombre }
           onChange = { (e) => handleSelect(e) }
           helperText = "Selecciona un puesto"
@@ -112,7 +120,10 @@ export default function Alta({ puestos, actualiza }) {
           {
             Object.values(puestos).map(
               (puesto) => (
-                <MenuItem key = { puesto.id_puesto } value = { puesto.id_puesto }>
+                <MenuItem
+                  key = { puesto.id_puesto }
+                  value = { puesto.id_puesto }
+                >
                   { puesto.nombre }
                 </MenuItem>
               )

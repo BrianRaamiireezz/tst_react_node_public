@@ -10,7 +10,7 @@ interface Empleado {
 
 }
 
-/* Empleado implicito - sin id
+/* Empleados implicito - sin id
 *  @interface EmpleadoImp
 * */
 interface EmpleadoImp {

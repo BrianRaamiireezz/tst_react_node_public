@@ -13,7 +13,7 @@ exports.create = (req, res) => {
       res.status(400).json({ error: error });
     }
     else {
-      res.status(200).json({ message: 'Empleado creado exitosamente' });
+      res.status(200).json({ message: 'Empleados creado exitosamente' });
     }
   });
 
@@ -35,7 +35,7 @@ exports.updateOne = (req, res) => {
       res.status(400).json({ error: error });
     }
     else {
-      res.status(200).json({ message: 'Empleado actualizado exitosamente' });
+      res.status(200).json({ message: 'Empleados actualizado exitosamente' });
     }
   });
 
@@ -50,7 +50,7 @@ exports.deleteOne = (req, res) => {
       res.status(400).json({ error: error });
     }
     else {
-      res.status(200).json({ message: 'Empleado eliminado exitosamente' });
+      res.status(200).json({ message: 'Empleados eliminado exitosamente' });
     }
   });
 

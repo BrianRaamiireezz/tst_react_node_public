@@ -1,7 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../utils/context';
 import { DataGrid } from '@mui/x-data-grid';
-import { Box, Button, MenuItem, Modal, Stack, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  MenuItem,
+  Modal,
+  Stack,
+  TextField,
+  Typography
+} from '@mui/material';
 
 export default function Modificacion({ puestos, empleados, actualiza }) {
 
@@ -135,7 +143,15 @@ export default function Modificacion({ puestos, empleados, actualiza }) {
   };
 
   return (
-    <div style = { { height: 400, width: '100%', display: 'flex', flexDirection: 'column', gap: 15 } }>
+    <div
+      style = { {
+        height: 400,
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 15
+      } }
+    >
 
       <DataGrid
         rows = { rows }
@@ -199,7 +215,7 @@ export default function Modificacion({ puestos, empleados, actualiza }) {
               <TextField
                 required
                 select
-                label = "Puesto"
+                label = "Puestos"
                 value = { puestoNombre }
                 onChange = { (e) => handleSelect(e) }
                 helperText = "Selecciona un puesto"
@@ -207,7 +223,10 @@ export default function Modificacion({ puestos, empleados, actualiza }) {
                 {
                   Object.values(puestos).map(
                     (puesto) => (
-                      <MenuItem key = { puesto.id_puesto } value = { puesto.id_puesto }>
+                      <MenuItem
+                        key = { puesto.id_puesto }
+                        value = { puesto.id_puesto }
+                      >
                         { puesto.nombre }
                       </MenuItem>
                     )
@@ -216,7 +235,13 @@ export default function Modificacion({ puestos, empleados, actualiza }) {
               </TextField>
             </Stack>
 
-            <div style = { { display: 'flex', gap: 15, justifyContent: 'space-around' } }>
+            <div
+              style = { {
+                display: 'flex',
+                gap: 15,
+                justifyContent: 'space-around'
+              } }
+            >
 
               <Button
                 variant = "contained"

@@ -10,14 +10,20 @@ import { store } from './app/store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Components
-
+import Error from './components/Error';
+import Protected from './features/user/Protected';
 
 // Styles
 import './index.css';
-import Protected from './features/user/Protected';
+
+// Routes
 import Root from './routes/Root';
 import HomePage from './routes/HomePage';
-import Dashboard from './features/user/Dashboard';
+import Dashboard from './routes/Dashboard';
+import Puestos from './routes/Puestos';
+import Empleados from './routes/Empleados';
+import Nomina from './routes/Nomina';
+import Reportes from './routes/Reportes';
 
 // Routes definition
 const router = createBrowserRouter(
@@ -27,7 +33,7 @@ const router = createBrowserRouter(
       element: <Root/>,
       children: [
         {
-          errorElement: <> <h1>Error</h1></>,
+          errorElement: <Error/>,
           children: [
             {
               index: true,
@@ -38,27 +44,27 @@ const router = createBrowserRouter(
               element: <Protected element = { <Dashboard/> }/>,
               children: [
                 {
-                  errorElement: <> <h2>Error</h2> </>,
+                  errorElement: <Error/>,
                   children: [
                     {
                       index: true,
-                      element: <> <h2> Bienvenido a tu dashboard </h2> </>
+                      element: <> <h3> Bienvenido a tu dashboard </h3></>,
                     },
                     {
                       path: 'puestos',
-                      element: <> <h2> Seccion puestos </h2> </>
+                      element: <Puestos/>,
                     },
                     {
                       path: 'empleados',
-                      element: <> <h2> Seccion empleados </h2> </>
+                      element: <Empleados/>,
                     },
                     {
                       path: 'nomina',
-                      element: <> <h2> Seccion nomina </h2> </>
+                      element: <Nomina/>,
                     },
                     {
                       path: 'reportes',
-                      element: <> <h2> Seccion reportes </h2> </>
+                      element: <Reportes/>,
                     },
                   ]
                 }
@@ -81,4 +87,4 @@ ReactDOM.createRoot( document.getElementById( 'root' ) as HTMLElement ).render(
   </React.StrictMode>
 );
 
-/* TODO: i - routes */
+/* TODO:  */
