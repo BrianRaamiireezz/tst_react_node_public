@@ -25,6 +25,9 @@ import Empleados from './routes/Empleados';
 import Nomina from './routes/Nomina';
 import Reportes from './routes/Reportes';
 
+// Index routes
+import PuestosIndex from './components/Puestos/PuestosIndex';
+
 // Routes definition
 const router = createBrowserRouter(
   [
@@ -53,6 +56,21 @@ const router = createBrowserRouter(
                     {
                       path: 'puestos',
                       element: <Puestos/>,
+                      children: [
+                        {
+                          errorElement: <Error/>,
+                          children: [
+                            {
+                              index: true,
+                              element: <PuestosIndex/>
+                            },
+                            {
+                              path: 'agregar',
+                              element: <> <h1> Agregar puesto </h1></>,
+                            }
+                          ]
+                        }
+                      ]
                     },
                     {
                       path: 'empleados',

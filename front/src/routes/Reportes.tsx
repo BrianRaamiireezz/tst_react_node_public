@@ -4,7 +4,7 @@ function Reportes() {
   return (
     <>
       <Typography variant = { 'h6' } component = { 'h2' }>
-        Seccion empleados
+        Seccion reportes
       </Typography>
     </>
   );

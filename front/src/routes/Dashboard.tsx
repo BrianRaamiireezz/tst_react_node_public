@@ -85,18 +85,13 @@ function Dashboard() {
       <Stack
         direction = { 'row' }
         spacing = { 2 }
-        justifyContent = { 'flex-start' }
-        alignItems = { 'stretch' }
+        sx = { {
+          height: '100vh'
+        } }
       >
 
         {/* Left side menu */ }
-        <Box
-          sx = { {
-            height: '100vh',
-            overflowY: 'auto',
-            paddingRight: 2,
-          } }
-        >
+        <Box>
 
           <Paper
             elevation = { 1 }
@@ -104,6 +99,8 @@ function Dashboard() {
               py: 1,
               px: 2,
               height: '100%',
+              overflow: 'auto',
+              overflowX: 'hidden'
             } }
           >
 
@@ -124,6 +121,7 @@ function Dashboard() {
                 Object.values( menuOptions ).map(
                   (option, index) => (
                     <ListLink
+                      key = { `dashboard-i-${ option.primary }` }
                       to = { option.to }
                       primary = { option.primary }
                       icon = { option.icon }
@@ -146,8 +144,7 @@ function Dashboard() {
           py = { 1 }
           flexGrow = { 1 }
           sx = { {
-            height: '100vh',
-            overflowY: 'auto'
+            overflow: 'auto'
           } }
         >
           <Outlet/>
