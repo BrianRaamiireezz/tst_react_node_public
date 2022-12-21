@@ -29,12 +29,12 @@ function PuestosIndex() {
 
   /* Cabecera tabla */
   const tableHeader = [
-    { name: 'Id' },
-    { name: 'Nombre' },
-    { name: 'Descripcion' },
-    { name: 'Base' },
-    { name: 'Gratificación' },
-    { name: 'Despensa' },
+    { name: 'Id', key: 'puestos-index-id' },
+    { name: 'Nombre', key: 'puestos-index-nombre' },
+    { name: 'Descripcion', key: 'puestos-index-descripcion' },
+    { name: 'Base', key: 'puestos-index-base' },
+    { name: 'Gratificación', key: 'puestos-index-gratificacion' },
+    { name: 'Despensa', key: 'puestos-index-despensa' },
   ];
 
   return (
@@ -73,6 +73,7 @@ function PuestosIndex() {
                       (campo) => (
                         <TableCell
                           sx = { { color: 'inherit' } }
+                          key = { campo.key }
                         >
                           { campo.name }
                         </TableCell>
@@ -86,7 +87,7 @@ function PuestosIndex() {
               <TableBody>
                 {
                   Object.values( datosPuestos ).map(
-                    (puesto) => {
+                    (puesto, index) => {
 
                       const sueldoAsociado = datosSueldos.find(
                         (sueldo) => {
@@ -94,14 +95,22 @@ function PuestosIndex() {
                         }
                       );
 
+                      let keyRow = `puestoindex-index-${ index }`;
+
                       return (
-                        <TableRow>
+                        <TableRow
+                          key = { keyRow }
+                        >
 
                           {/* Datos puesto */ }
                           {
                             Object.values( puesto ).map(
-                              (campo) => (
-                                <TableCell> { campo } </TableCell>
+                              (campo, index) => (
+                                <TableCell
+                                  key = { `${ keyRow }-campo-${ index }` }
+                                >
+                                  { campo }
+                                </TableCell>
                               )
                             )
                           }

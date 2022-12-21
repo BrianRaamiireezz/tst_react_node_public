@@ -20,7 +20,10 @@ import './index.css';
 import Root from './routes/Root';
 import HomePage from './routes/HomePage';
 import Dashboard from './routes/Dashboard';
+
 import Puestos from './routes/Puestos';
+import AgregaPuesto from './routes/Puestos/Agrega';
+
 import Empleados from './routes/Empleados';
 import Nomina from './routes/Nomina';
 import Reportes from './routes/Reportes';
@@ -66,7 +69,7 @@ const router = createBrowserRouter(
                             },
                             {
                               path: 'agregar',
-                              element: <> <h1> Agregar puesto </h1></>,
+                              element: <AgregaPuesto/>,
                             }
                           ]
                         }

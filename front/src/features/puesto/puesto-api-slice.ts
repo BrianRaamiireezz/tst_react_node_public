@@ -8,12 +8,12 @@ interface Puesto {
   descripcion: string;
 }
 
-interface PuestoImpl {
+export interface PuestoImpl {
   nombre: string;
   descripcion: string;
 }
 
-interface Sueldo {
+export interface Sueldo {
   base: string;
   gratificacion: string;
   despensa: string;
@@ -39,7 +39,7 @@ export const puestoApiSlice = coreApiSlice.injectEndpoints(
           {
             query(args) {
               return {
-                url: `/`,
+                url: `${ segment }/`,
                 method: `POST`,
                 body: args
               };
