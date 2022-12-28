@@ -1,6 +1,6 @@
 import { coreApiSlice } from '../api/core-api-slice';
 
-interface Empleado {
+export interface Empleado {
 
   'id_empleado': number,
   'nombre': string,
@@ -13,7 +13,7 @@ interface Empleado {
 /* Empleados implicito - sin id
 *  @interface EmpleadoImp
 * */
-interface EmpleadoImp {
+export interface EmpleadoImp {
   // Nombre del empleado
   nombre: string;
   // Direccion del empleado
@@ -43,22 +43,21 @@ export const employApiSlice = coreApiSlice.injectEndpoints(
             providesTags: ['Employee'],
           }
         ),
-        addEmpleado: builder.mutation<Response, { empleado: EmpleadoImp, auth: string }>(
+        addEmpleado: builder.mutation<Response, { empleado: EmpleadoImp }>(
           {
             query(args) {
               return {
                 url: `${ segment }/`,
                 method: 'POST',
                 body: {
-                  data: args.empleado,
-                  correo: args.auth
+                  data: args.empleado
                 }
               };
             },
             invalidatesTags: ['Employee'],
           }
         ),
-        updateEmpleado: builder.mutation<Response, { empleado: EmpleadoImp, auth: string, id: string }>(
+        updateEmpleado: builder.mutation<Response, { empleado: EmpleadoImp, id: string }>(
           {
             query(args) {
               return {
@@ -66,22 +65,19 @@ export const employApiSlice = coreApiSlice.injectEndpoints(
                 method: 'PUT',
                 body: {
                   data: args.empleado,
-                  correo: args.auth
                 }
               };
             },
             invalidatesTags: ['Employee'],
           }
         ),
-        deleteEmpleado: builder.mutation<Response, { auth: string, id: string }>(
+        deleteEmpleado: builder.mutation<Response, { id: string }>(
           {
             query(args) {
               return {
                 url: `${ segment }/${ args.id }`,
                 method: 'DELETE',
-                body: {
-                  correo: args.auth
-                }
+                body: {}
               };
             },
             invalidatesTags: ['Employee'],

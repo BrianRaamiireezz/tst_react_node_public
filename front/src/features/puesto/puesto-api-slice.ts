@@ -2,7 +2,7 @@ import { coreApiSlice } from '../api/core-api-slice';
 
 const segment = '/puesto';
 
-interface Puesto {
+export interface Puesto {
   id_puesto: number;
   nombre: string;
   descripcion: string;
