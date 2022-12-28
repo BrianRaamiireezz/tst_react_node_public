@@ -2,26 +2,40 @@ import React from 'react';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { useEmployee } from '../index';
 import { useNavigate } from 'react-router-dom';
-import { Empleado } from '../../../features/employee/employ-api-slice';
+import {
+  Empleado,
+  useDeleteEmpleadoMutation
+} from '../../../features/employee/employ-api-slice';
 
 function EliminaEmpleado() {
 
   const navigate = useNavigate();
+
   const { selected } = useEmployee();
 
+  const [deleteEmpleado, { isLoading }] = useDeleteEmpleadoMutation();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
+    event.preventDefault();
+
+    try {
+
+      let response = await deleteEmpleado( { id: ( selected as Empleado ).id_empleado.toString() } );
+
+      navigate( -1 );
+
+    } catch (e) {
+      console.log( e );
+    }
 
   };
 
   return (
     <>
       <Typography variant = { 'h6' } component = { 'h2' } gutterBottom>
-        Eliminar empleado
+        El empleado con los siguientes datos será eliminado:
       </Typography>
-
-      <p>
-        { JSON.stringify( selected ) }
-      </p>
 
       <form
         onSubmit = { (event) => handleSubmit( event ) }
@@ -35,33 +49,41 @@ function EliminaEmpleado() {
             py: 2
           } }
         >
-          
+
           <TextField
             name = { 'nombre' }
             label = { 'Nombre' }
             defaultValue = { ( selected as Empleado ).nombre }
-            required
+            InputProps = { {
+              readOnly: true,
+            } }
           />
 
           <TextField
             name = { 'direccion' }
             label = { 'Direccion' }
             defaultValue = { ( selected as Empleado ).direccion }
-            required
+            InputProps = { {
+              readOnly: true,
+            } }
           />
 
           <TextField
             name = { 'correo' }
             label = { 'Correo' }
             defaultValue = { ( selected as Empleado ).correo }
-            required
+            InputProps = { {
+              readOnly: true,
+            } }
           />
 
           <TextField
             name = { 'id_puesto' }
             label = { 'Puesto' }
             defaultValue = { ( selected as Empleado ).id_puesto }
-            required
+            InputProps = { {
+              readOnly: true,
+            } }
           />
 
         </Stack>

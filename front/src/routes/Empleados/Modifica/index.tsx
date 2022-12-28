@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useEmployee } from '../index';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ import {
 import { useGetPuestosQuery } from '../../../features/puesto/puesto-api-slice';
 
 import {
-  Button,
+  Button, FormControl, InputLabel,
   MenuItem,
   Select,
   Stack,
@@ -101,24 +101,32 @@ function ModificaEmpleado() {
             required
           />
 
-          <Select
-            name = { 'id_puesto' }
-            label = { 'Puesto' }
-            defaultValue = { ( selected as Empleado ).id_puesto }
-          >
-            {
-              Object.values( datosPuestos ).map(
-                (puesto) => (
-                  <MenuItem
-                    value = { puesto.id_puesto }
-                    key = { `puesto-id-${ puesto.id_puesto }` }
-                  >
-                    { puesto.nombre }
-                  </MenuItem>
+          <FormControl>
+
+            <InputLabel id = { 'employee-add-puesto-select-label' }>
+              Puesto
+            </InputLabel>
+
+            <Select
+              name = { 'id_puesto' }
+              label = { 'Puesto' }
+              defaultValue = { ( selected as Empleado ).id_puesto }
+            >
+              {
+                Object.values( datosPuestos ).map(
+                  (puesto) => (
+                    <MenuItem
+                      value = { puesto.id_puesto }
+                      key = { `puesto-id-${ puesto.id_puesto }` }
+                    >
+                      { puesto.nombre }
+                    </MenuItem>
+                  )
                 )
-              )
-            }
-          </Select>
+              }
+            </Select>
+
+          </FormControl>
 
         </Stack>
 

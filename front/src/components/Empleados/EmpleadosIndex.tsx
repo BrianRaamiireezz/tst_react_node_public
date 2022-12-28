@@ -4,7 +4,10 @@ import { useEmployee } from '../../routes/Empleados';
 import { useNavigate } from 'react-router-dom';
 
 import { useGetEmpleadosQuery } from '../../features/employee/employ-api-slice';
-import { useGetPuestosQuery } from '../../features/puesto/puesto-api-slice';
+import {
+  Puesto,
+  useGetPuestosQuery
+} from '../../features/puesto/puesto-api-slice';
 
 import { Button, Stack, Typography } from '@mui/material';
 
@@ -16,7 +19,7 @@ import {
 function EmpleadosIndex() {
 
   /* Manage row selected data */
-  const { selected, setSelected } = useEmployee();
+  const { setSelected } = useEmployee();
 
   /* Selection */
   const [selectionModel, setSelectionModel] = useState<GridSelectionModel>( [] );
@@ -60,7 +63,7 @@ function EmpleadosIndex() {
       flex: 1,
     },
     {
-      field: 'id_puesto',
+      field: 'puesto',
       headerName: 'Puesto',
       editable: false,
       flex: 1,
@@ -68,12 +71,29 @@ function EmpleadosIndex() {
   ];
 
   const rows = Object.values( datosEmpleados ).map(
-    ({ id_empleado: id, ...rest }) => (
-      {
-        id,
-        ...rest
+    ({ id_empleado: id, id_puesto, ...rest }) => {
+
+      let puestoAsociado = Object.values( datosPuesto ).find(
+        (puesto) => puesto.id_puesto === id_puesto
+      );
+
+      let nombrepuesto;
+
+      if (puestoAsociado === undefined) {
+        nombrepuesto = 'No encontrado';
       }
-    )
+      else {
+        nombrepuesto = ( puestoAsociado as Puesto ).nombre;
+      }
+
+      return (
+        {
+          id,
+          puesto: nombrepuesto,
+          ...rest
+        }
+      );
+    }
   );
 
   function handleSelection(selectionModel: GridSelectionModel) {
