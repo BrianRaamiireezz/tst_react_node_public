@@ -23,7 +23,6 @@ function Login() {
   // Feedback state
   const [open, setOpen] = useState( false );
 
-
   // Input change handler
   const handleInput = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
