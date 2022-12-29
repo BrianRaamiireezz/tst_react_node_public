@@ -32,7 +32,7 @@ exports.create = (req, res) => {
           res.status(400).json({ error: error });
         }
         else {
-          res.status(200).json({ message: 'Puesto creado exitosamente' });
+          res.status(200).json({ message: 'Puestos creado exitosamente' });
         }
       });
     }
@@ -49,7 +49,7 @@ exports.findAll = (req, res) => {
       res.status(400).json({ error: error });
     }
     else {
-      res.status(200).json({ data });
+      res.status(200).json([...data]);
     }
   });
 };

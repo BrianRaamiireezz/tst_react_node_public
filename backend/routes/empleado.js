@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/', auth, empleadoController.create);
 
-router.get('/', empleadoController.findAll);
+router.get('/', auth, empleadoController.findAll);
 
 router.put('/:id', auth, empleadoController.updateOne);
 router.delete('/:id', auth, empleadoController.deleteOne);
